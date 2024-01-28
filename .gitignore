@@ -1,0 +1,4 @@
+gpio-adc-assignment/build/
+gpio-adc-assignment/.vscode/
+gpio-adc-assignment/.devcontainer/
+gpio-adc-assignment/sdkconfig
