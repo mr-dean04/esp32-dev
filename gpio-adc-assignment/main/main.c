@@ -14,7 +14,6 @@ void app_main(void)
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .intr_type = GPIO_INTR_DISABLE
     };
-
     gpio_config(&io_config);
 
     // Configure dac channel 0 
@@ -35,9 +34,7 @@ void app_main(void)
     // register a channel with a handle
     dac_oneshot_new_channel(&led_channel_1, &led_channel_1_handle);
 
-
-    while(1){
-        
+    while(1){   
         //Turn all leds off except 23 and 19
         gpio_set_level(GPIO_NUM_23, 1);
         gpio_set_level(GPIO_NUM_19, 1);
@@ -71,11 +68,9 @@ void app_main(void)
      
         //Turn all leds off decrease channel 0 from 0 to 255 and increase chan 1 from 0 to 255 in 30 step
         for (int i = 255, j = 0; i >= 0 && j <= 255; i= i-30, j = j+30)
-        {
-            
-            printf("The valus of %d\t%d\n", i, j);            
-            //dac_oneshot_output_voltage(led_channel_0_handle, i);
-            //dac_oneshot_output_voltage(led_channel_1_handle, j);
+        {         
+            dac_oneshot_output_voltage(led_channel_0_handle, i);
+            dac_oneshot_output_voltage(led_channel_1_handle, j);
             vTaskDelay(1000/portTICK_PERIOD_MS); 
         }
 
