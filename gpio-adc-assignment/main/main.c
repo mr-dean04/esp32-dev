@@ -38,7 +38,6 @@ void app_main(void)
 
     while(1){
         
-        /*
         //Turn all leds off except 23 and 19
         gpio_set_level(GPIO_NUM_23, 1);
         gpio_set_level(GPIO_NUM_19, 1);
@@ -69,9 +68,7 @@ void app_main(void)
             dac_oneshot_output_voltage(led_channel_1_handle, i);
             vTaskDelay(500/portTICK_PERIOD_MS); 
         }
-        */
-
-        
+     
         //Turn all leds off decrease channel 0 from 0 to 255 and increase chan 1 from 0 to 255 in 30 step
         for (int i = 255, j = 0; i >= 0 && j <= 255; i= i-30, j = j+30)
         {
@@ -82,7 +79,6 @@ void app_main(void)
             vTaskDelay(1000/portTICK_PERIOD_MS); 
         }
 
-        /*
         //Turn all leds off except 23 and 19
         gpio_set_level(GPIO_NUM_23, 0);
         gpio_set_level(GPIO_NUM_19, 0);
@@ -91,9 +87,5 @@ void app_main(void)
         dac_oneshot_output_voltage(led_channel_0_handle, 0);
         dac_oneshot_output_voltage(led_channel_1_handle, 0);
         vTaskDelay(1000/portTICK_PERIOD_MS);
-        */
     }
-
-
-
 }
