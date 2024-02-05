@@ -46,12 +46,19 @@ void app_main(void)
         //read value from the unit
         adc_oneshot_read(ldr_handle, ADC_CHANNEL_6, &ldr_values);
         printf("The ldr values are %d\n", ldr_values);
-        if (ldr_values >= LDR_THRESHOLD){
+
+        /*
+        if (ldr_values >= LDR_THRESHOLD)
+        {
             gpio_set_level(GPIO_NUM_23, 0);
         }
-        else {
+        else 
+        {
             gpio_set_level(GPIO_NUM_23, 1);
         }
+        */
+        // The if- else condition above is the same as the below. The below uses ternary operator - condition ? expression1 : expression2;
+        ldr_values >= LDR_THRESHOLD ? gpio_set_level(GPIO_NUM_23, 0) : gpio_set_level(GPIO_NUM_23, 1);
         vTaskDelay(50/portTICK_PERIOD_MS);
     }
 }
